@@ -17,7 +17,7 @@ export class ResultScene extends Phaser.Scene {
       .text(
         width / 2,
         height / 2 - 20,
-        `游戏结束\n得分：${score}\n到达波次：${wave}\n\n按 回车 / 点击 重新开始`,
+        `GAME OVER\nSCORE: ${score}\nWAVE: ${wave}\n\nPRESS ENTER OR CLICK TO RESTART`,
         { font: "24px monospace", color: "#ffffff", align: "center" },
       )
       .setOrigin(0.5);

@@ -82,7 +82,7 @@ export class GameScene extends Phaser.Scene {
         .setScrollFactor(0);
     }
     const hp = Math.max(0, this.state.player.hp);
-    this.hudText.setText(`生命 ${hp}   分数 ${this.state.score}   波次 ${this.wave}`);
+    this.hudText.setText(`HP ${hp}   SCORE ${this.state.score}   WAVE ${this.wave}`);
 
     // 结算
     if (this.state.status === "gameover") {

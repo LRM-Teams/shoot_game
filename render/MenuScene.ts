@@ -4,13 +4,14 @@
 import Phaser from "phaser";
 
 const MENU_TEXT = [
-  "俯视角射击（无音乐）",
+  "TOP-DOWN SHOOTER",
+  "(NO MUSIC)",
   "",
-  "移动：WASD / 方向键",
-  "瞄准：鼠标",
-  "开火：按住 鼠标左键 或 空格",
+  "MOVE: WASD / ARROWS",
+  "AIM: MOUSE",
+  "FIRE: HOLD LEFT CLICK / SPACE",
   "",
-  "按 回车 / 点击 开始",
+  "PRESS ENTER OR CLICK TO START",
 ].join("\n");
 
 export class MenuScene extends Phaser.Scene {
