@@ -41,7 +41,8 @@ export class GameScene extends Phaser.Scene {
   private startNextWave(): void {
     this.wave += 1;
     this.toSpawn = 3 + this.wave;
-    this.spawnTimer = 0.5;
+    // 新波次先立即出现一名敌人，开局就给玩家明确的战斗目标。
+    this.spawnTimer = 0;
   }
 
   update(_time: number, delta: number): void {
