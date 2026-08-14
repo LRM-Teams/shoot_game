@@ -11,6 +11,10 @@ export class InputBridge {
     down: Phaser.Input.Keyboard.Key;
     left: Phaser.Input.Keyboard.Key;
     right: Phaser.Input.Keyboard.Key;
+    w: Phaser.Input.Keyboard.Key;
+    a: Phaser.Input.Keyboard.Key;
+    s: Phaser.Input.Keyboard.Key;
+    d: Phaser.Input.Keyboard.Key;
     fire: Phaser.Input.Keyboard.Key;
   };
   private mouse: Phaser.Input.Pointer;
@@ -23,25 +27,24 @@ export class InputBridge {
       down: kb.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN),
       left: kb.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT),
       right: kb.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT),
+      w: kb.addKey(Phaser.Input.Keyboard.KeyCodes.W),
+      a: kb.addKey(Phaser.Input.Keyboard.KeyCodes.A),
+      s: kb.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      d: kb.addKey(Phaser.Input.Keyboard.KeyCodes.D),
       fire: kb.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE),
     };
-    kb.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    kb.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    kb.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    kb.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.mouse = scene.input.activePointer;
     scene.input.on("pointerdown", () => (this.mouseDown = true));
     scene.input.on("pointerup", () => (this.mouseDown = false));
   }
 
   read(stateInput: InputState, camera: Phaser.Cameras.Scene2D.Camera): void {
-    const kb = this.scene.input.keyboard!;
     let mx = 0;
     let my = 0;
-    if (kb.isDown(Phaser.Input.Keyboard.KeyCodes.LEFT) || kb.isDown(Phaser.Input.Keyboard.KeyCodes.A)) mx -= 1;
-    if (kb.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT) || kb.isDown(Phaser.Input.Keyboard.KeyCodes.D)) mx += 1;
-    if (kb.isDown(Phaser.Input.Keyboard.KeyCodes.UP) || kb.isDown(Phaser.Input.Keyboard.KeyCodes.W)) my -= 1;
-    if (kb.isDown(Phaser.Input.Keyboard.KeyCodes.DOWN) || kb.isDown(Phaser.Input.Keyboard.KeyCodes.S)) my += 1;
+    if (this.keys.left.isDown || this.keys.a.isDown) mx -= 1;
+    if (this.keys.right.isDown || this.keys.d.isDown) mx += 1;
+    if (this.keys.up.isDown || this.keys.w.isDown) my -= 1;
+    if (this.keys.down.isDown || this.keys.s.isDown) my += 1;
 
     const cam = camera;
     const wx = cam.scrollX + this.mouse.x / cam.zoom;
