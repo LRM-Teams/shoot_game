@@ -19,6 +19,12 @@ export class MenuScene extends Phaser.Scene {
   }
 
   create(): void {
+    // 仅供自动化视觉验收直接进入战斗；普通访问仍显示菜单。
+    if (new URLSearchParams(window.location.search).get("autostart") === "1") {
+      this.scene.start("Game");
+      return;
+    }
+
     const { width, height } = this.scale;
     this.add
       .text(width / 2, height / 2 - 20, MENU_TEXT, {

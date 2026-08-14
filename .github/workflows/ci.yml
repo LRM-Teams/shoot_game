@@ -17,7 +17,19 @@ jobs:
       - run: npm install --no-audit --no-fund
       - run: npm run test
       - run: npm run build
+      - name: Capture menu and battle screenshots
+        run: |
+          python3 -m http.server 4174 --directory dist >/tmp/shooter-server.log 2>&1 &
+          sleep 2
+          google-chrome --headless=new --no-sandbox --disable-gpu --window-size=800,600 --screenshot=menu.png http://127.0.0.1:4174
+          google-chrome --headless=new --no-sandbox --disable-gpu --window-size=800,600 --virtual-time-budget=1800 --screenshot=battle.png 'http://127.0.0.1:4174/?autostart=1'
       - uses: actions/upload-artifact@v4
         with:
           name: shooter-game-dist
           path: dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shooter-game-screenshots
+          path: |
+            menu.png
+            battle.png
